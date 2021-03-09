@@ -1,7 +1,8 @@
-//chedo all'utente a che difficoltà desidera giocare
+//chedo all'utente a che difficoltà desidera giocare e la stampo nel Dom id difficolta
 var difficulty = parseInt(prompt('Scegli la difficoltà a cui giocare: 0 = facile, 1 = media, 2 = difficile'))
 document.getElementById('difficolta').innerHTML = 'Hai scelto la difficoltà: ' + difficulty;
 
+//dichiaro variabile difficulty e le attribuisco un valore in base alla difficoltà scelta
 var maxNumber;
 if (difficulty == 0) {
   maxNumber = 100;
@@ -14,18 +15,16 @@ if (difficulty == 0) {
 //creo degli array vuoti per ospitare i numeri bomba e i numeri salvi
 var bombsArray = [];
 var savesArray = [];
-// var maxNumber = 100;
-//inserisco nell'array bombsArray i numeri bomba creati dalla funzione 
+
+//inserisco nell'array bombsArray i numeri bomba creati dalla funzione createBombs
 bombsArray = createBombs(bombsArray, maxNumber);
 
 //creo variabile dove inserire il risultato della funzione game
 var punteggio = game (bombsArray, savesArray, maxNumber);
 
-//stampo il punteggio ottenuto
+//stampo il punteggio ottenuto nel DOM id risultato 
 console.log('GAME OVER!');
 console.log('Il tuo punteggio è di: ' + punteggio);
-
-
 document.getElementById('risultato').innerHTML = 'GAME OVER! il tuo punteggio è ' + punteggio;
 
 
@@ -53,6 +52,8 @@ function game(bombsArray, savesArray, maxNumber) {
       } else {
         return savesArray.length;
       }
+    } else {
+      alert('Non mi hai dato un numero corretto oppure hai ripetuto due volte lo stesso numero')
     }
   }
   return savesArray.length;
